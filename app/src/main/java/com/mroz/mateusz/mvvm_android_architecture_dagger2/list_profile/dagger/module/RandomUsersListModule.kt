@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module(includes = [OkHttpClientModule::class])
 class RandomUsersListModule {
-    val url:String = "https://randomuser.me/api/?results=5"
+    val url:String = "https://randomuser.me/"
 
     @Provides
     fun randomUsersApi(retrofit: Retrofit): RandomUsersListModule = retrofit.create(RandomUsersListModule::class.java)

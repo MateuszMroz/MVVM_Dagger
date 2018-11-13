@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 
 interface RandomUsersListApi {
-    @GET
+    @GET("api")
     fun getRandomUsers(@Query("results") size: Int): Call<List<Person>>
 }
