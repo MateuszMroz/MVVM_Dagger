@@ -12,11 +12,13 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersLi
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Response
+import timber.log.Timber
+import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
     lateinit var randomUsersListApi: RandomUsersListApi
     lateinit var picasso: Picasso
-    val TAG:String = "Response"
+    val TAG:String = this::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +32,15 @@ class MainActivity : AppCompatActivity() {
         picasso = listUserComponent.getPicasso()
 
         var randomUsersCall = randomUsersListApi.getRandomUsers(5)
-        randomUsersCall.enqueue(object : retrofit2.Callback<List<User>>{
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        randomUsersCall.enqueue(object : retrofit2.Callback<User>{
+            override fun onResponse(call: Call<User>?, response: Response<User>?) {
+                Log.d(TAG, response?.body()?.listUsers!![0].email)
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-
+            override fun onFailure(call: Call<User>?, t: Throwable?) {
+                Log.d(TAG, "ERROR")
             }
-
         })
 
     }
 }
-
