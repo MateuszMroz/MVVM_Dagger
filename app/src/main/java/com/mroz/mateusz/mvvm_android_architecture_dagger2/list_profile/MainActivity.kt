@@ -12,7 +12,6 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersLi
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
     lateinit var randomUsersListApi: RandomUsersListApi
@@ -31,16 +30,17 @@ class MainActivity : AppCompatActivity() {
         picasso = listUserComponent.getPicasso()
 
         var randomUsersCall = randomUsersListApi.getRandomUsers(5)
-        randomUsersCall.enqueue(object : retrofit2.Callback<User>{
-            override fun onFailure(call: Call<User>, t: Throwable) {
-
+        randomUsersCall.enqueue(object : retrofit2.Callback<List<User>>{
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-               Log.d(TAG, response.body()?.gender)
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+
             }
 
         })
 
     }
 }
+

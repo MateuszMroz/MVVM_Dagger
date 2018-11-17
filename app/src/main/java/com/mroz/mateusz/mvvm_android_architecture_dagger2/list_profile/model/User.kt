@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 
 class User {
+    @SerializedName("results")
     @Expose
-    var gender: String = ""
+    var listResult: List<Result>? = null
+
 }
