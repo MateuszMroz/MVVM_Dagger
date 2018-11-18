@@ -1,8 +1,8 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
 
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.scope.RandomUserApplicationScope
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersListApi
 import dagger.Module
 import dagger.Provides
@@ -17,10 +17,10 @@ class RandomUsersListModule {
     @Provides
     fun randomUsersApi(retrofit: Retrofit): RandomUsersListApi = retrofit.create(RandomUsersListApi::class.java)
 
+    @RandomUserApplicationScope
     @Provides
     fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory,
                  gson: Gson):Retrofit {
-
 
         return Retrofit.Builder()
                 .client(okHttpClient)

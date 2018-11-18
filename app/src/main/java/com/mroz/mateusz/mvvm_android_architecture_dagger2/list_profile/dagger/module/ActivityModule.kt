@@ -7,9 +7,9 @@ import dagger.Provides
 import javax.inject.Named
 
 @Module
-class ContextModule(private val context: Context) {
-    @Named("application_context")
+class ActivityModule(var context: Context) {
+    @Named("activity_context")
     @RandomUserApplicationScope
     @Provides
-    fun getContext(): Context = context.applicationContext
+    fun context(): Context = this.context
 }

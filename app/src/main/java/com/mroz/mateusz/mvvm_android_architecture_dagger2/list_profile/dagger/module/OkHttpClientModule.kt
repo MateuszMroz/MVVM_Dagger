@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.io.Console
 import java.io.File
+import javax.inject.Named
 
 @Module(includes = [ContextModule::class])
 class OkHttpClientModule {
@@ -26,7 +27,7 @@ class OkHttpClientModule {
     fun cache(file: File): Cache = Cache(file, 10 * 1024 * 1024)
 
     @Provides
-    fun file(context: Context): File {
+    fun file(@Named("application_context")context: Context): File {
         val file = File(context.cacheDir, "HttpCache")
         file.mkdirs()
         return file

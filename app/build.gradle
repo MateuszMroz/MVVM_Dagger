@@ -24,6 +24,9 @@ android {
         test.java.srcDirs = ['src/test/kotlin']
         androidTest.java.srcDirs = ['src/androidTest/kotlin']
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -48,9 +51,6 @@ dependencies {
     // Dagger 2
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
-    // Data binding
-    kapt "com.android.databinding:compiler:3.1.4"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

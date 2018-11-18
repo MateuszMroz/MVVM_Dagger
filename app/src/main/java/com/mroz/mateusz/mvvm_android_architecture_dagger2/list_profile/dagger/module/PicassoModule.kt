@@ -1,17 +1,19 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
 
 import android.content.Context
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.scope.RandomUserApplicationScope
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import javax.inject.Named
 
 @Module(includes = [OkHttpClientModule::class])
 class PicassoModule {
-
+    @RandomUserApplicationScope
     @Provides
-    fun picasso(context: Context, okHttp3Downloader: OkHttp3Downloader): Picasso {
+    fun picasso(@Named("application_context")context: Context, okHttp3Downloader: OkHttp3Downloader): Picasso {
         return Picasso.Builder(context)
                 .downloader(okHttp3Downloader)
                 .build()

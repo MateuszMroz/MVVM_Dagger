@@ -12,8 +12,6 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersLi
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Response
-import timber.log.Timber
-import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
     lateinit var randomUsersListApi: RandomUsersListApi
