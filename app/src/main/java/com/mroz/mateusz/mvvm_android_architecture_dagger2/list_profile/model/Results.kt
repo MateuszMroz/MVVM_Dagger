@@ -10,17 +10,32 @@ import android.graphics.Picture
 class Results {
     @SerializedName("gender")
     @Expose
-    val gender: String? = null
+    val gender: String = ""
+    @SerializedName("name")
+    @Expose
+    private val name: Name? = null
+    @SerializedName("location")
+    @Expose
+    private val location: Location? = null
     @SerializedName("email")
     @Expose
-    val email: String? = null
+    val email: String = ""
+    @SerializedName("login")
+    @Expose
+    private val login: Login? = null
+    @SerializedName("dob")
+    @Expose
+    val dateOfBirthday: DateOfBirthday? = null
+    @SerializedName("registered")
+    @Expose
+    val registered: String = ""
     @SerializedName("phone")
     @Expose
-    val phone: String? = null
+    val phone: String = ""
     @SerializedName("cell")
     @Expose
     val cell: String? = null
-    @SerializedName("nat")
+    @SerializedName("picture")
     @Expose
-    val nat: String? = null
+    val picture: Picture? = null
 }

@@ -2,19 +2,15 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.R
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.DaggerListUserComponent
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.ListUserComponent
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module.ContextModule
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.User
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.CallBackKt
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersListApi
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RequestCallback
 import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     lateinit var randomUsersListApi: RandomUsersListApi
@@ -35,13 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         requestCallback = object: RequestCallback<User> {
             override fun onSuccess(response: User) {
-               Log.d(TAG,"user")
+                Timber.d(TAG, response.listUsers!![0].email)
             }
 
             override fun onFailure(message: String, code: Int) {
-                Log.d(TAG, "ERROR")
+                Timber.d(TAG, "ERROR")
             }
-
         }
     }
 }
