@@ -1,13 +1,13 @@
-package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
+package com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.dagger.module
 
 import android.content.Context
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.context.ContextModule
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
-import java.io.Console
 import java.io.File
 import javax.inject.Named
 

@@ -1,7 +1,8 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
 
 import android.content.Context
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.scope.RandomUserApplicationScope
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.scope.RandomUserApplicationScope
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.dagger.module.OkHttpClientModule
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import dagger.Module

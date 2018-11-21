@@ -11,5 +11,5 @@ class Location {
     @Expose
     var state: String = ""
     @Expose
-    var postcode:Int = 0
+    var postcode:String = ""
 }

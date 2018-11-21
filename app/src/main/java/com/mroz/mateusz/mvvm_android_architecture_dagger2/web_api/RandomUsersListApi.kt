@@ -1,4 +1,4 @@
-package com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit
+package com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api
 
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.User
 import retrofit2.Call

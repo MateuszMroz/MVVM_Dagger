@@ -2,9 +2,6 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import android.graphics.Picture
-
-
 
 
 class Results {
@@ -26,9 +23,6 @@ class Results {
     @SerializedName("dob")
     @Expose
     val dateOfBirthday: DateOfBirthday? = null
-    @SerializedName("registered")
-    @Expose
-    val registered: String = ""
     @SerializedName("phone")
     @Expose
     val phone: String = ""
@@ -37,5 +31,5 @@ class Results {
     val cell: String? = null
     @SerializedName("picture")
     @Expose
-    val picture: Picture? = null
+    val pictureJSON: PictureJSON? = null
 }

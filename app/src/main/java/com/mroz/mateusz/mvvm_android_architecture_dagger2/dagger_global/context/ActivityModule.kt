@@ -1,7 +1,7 @@
-package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
+package com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.context
 
 import android.content.Context
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.scope.RandomUserApplicationScope
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.scope.RandomUserApplicationScope
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

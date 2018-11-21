@@ -1,9 +1,9 @@
-package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module
+package com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.dagger.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.scope.RandomUserApplicationScope
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.retrofit.RandomUsersListApi
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.scope.RandomUserApplicationScope
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.RandomUsersListApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
