@@ -1,6 +1,8 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.context.ContextModule
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.DaggerListUserComponent
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.ListUserComponent
@@ -17,23 +19,26 @@ class ListUserRepository(application:Application) {
 
     var randomUsersListApi: RandomUsersListApi
     var picasso: Picasso
-    var listUserComponent: ListUserComponent
+    val listUserComponent: ListUserComponent by lazy {
+        DaggerListUserComponent.builder()
+                .contextModule(ContextModule(application.applicationContext))
+                .build()
+    }
 
     lateinit var requestCallback: RequestCallback<User>
 
     init {
-        listUserComponent = DaggerListUserComponent.builder()
-                .contextModule(ContextModule(application.applicationContext))
-                .build()
-
         randomUsersListApi = listUserComponent.getRandomUsersService()
         picasso = listUserComponent.getPicasso()
     }
 
 
-    fun getListUserFromWebApi(countUser:Int) {
+    fun getListUserFromWebApi(countUser:Int) : LiveData<User> {
+        var data: MutableLiveData<User> = MutableLiveData()
+
         requestCallback = object: RequestCallback<User> {
             override fun onSuccess(response: User) {
+                data.value = response
                 Timber.w(TAG, response.listUsers!![0].email)
             }
 
@@ -43,6 +48,8 @@ class ListUserRepository(application:Application) {
         }
 
         randomUsersListApi.getRandomUsers(countUser).enqueue(CallBackKt<User>(requestCallback))
+
+        return data
     }
 
 
