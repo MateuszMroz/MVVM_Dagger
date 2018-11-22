@@ -1,4 +1,4 @@
-package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile
+package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.viewModel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
@@ -7,12 +7,10 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repositor
 import javax.inject.Inject
 
 
-class ListProfileViewModel : ViewModel() {
+class ListProfileViewModel(userRepository: ListUserRepository) : ViewModel() {
     var users: LiveData<User>? = null
-    /*@Inject
-    lateinit var userRepo: ListUserRepository
 
     init {
-        users = userRepo?.getListUserFromWebApi(5)
-    }*/
+        users = userRepository?.getListUserFromWebApi(5)
+    }
 }

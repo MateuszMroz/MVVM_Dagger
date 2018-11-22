@@ -17,8 +17,9 @@ class MVVMDaggerApplication : Application() {
             }
         })
 
-        //DaggerRepositoryComponent.create().injectRepo(ListUserRepository(this))
-        DaggerRepositoryComponent.builder().repoModule(RepoModule(this)).build()
+        DaggerRepositoryComponent.builder()
+                .repoModule(RepoModule(this))
+                .build()
 
     }
 
