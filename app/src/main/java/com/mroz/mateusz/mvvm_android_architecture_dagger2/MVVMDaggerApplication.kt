@@ -17,10 +17,6 @@ class MVVMDaggerApplication : Application() {
             }
         })
 
-        DaggerRepositoryComponent.builder()
-                .repoModule(RepoModule(this))
-                .build()
-
     }
 
 }

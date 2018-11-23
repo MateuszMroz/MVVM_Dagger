@@ -13,7 +13,7 @@ class ListProfileViewModelFactory
         return if (modelClass.isAssignableFrom(ListProfileViewModel::class.java!!)) {
             ListProfileViewModel(this.repository) as T
         } else {
-            throw IllegalArgumentException("ViewModel Not Found")
+            throw IllegalArgumentException("ViewModel Not Found") as Throwable
         }
     }
 }

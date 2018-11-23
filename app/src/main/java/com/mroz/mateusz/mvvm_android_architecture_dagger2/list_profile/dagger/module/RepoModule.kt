@@ -18,7 +18,6 @@ class RepoModule(var application:Application) {
     @Provides
     fun repo(application:Application):ListUserRepository = ListUserRepository(application)
 
-
     @Provides
     fun viewModelFactory(repository: ListUserRepository): ListProfileViewModelFactory = ListProfileViewModelFactory(repository)
 }

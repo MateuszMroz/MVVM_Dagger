@@ -10,16 +10,16 @@ class Results {
     val gender: String = ""
     @SerializedName("name")
     @Expose
-    private val name: Name? = null
+    val name: Name? = null
     @SerializedName("location")
     @Expose
-    private val location: Location? = null
+    val location: Location? = null
     @SerializedName("email")
     @Expose
     val email: String = ""
     @SerializedName("login")
     @Expose
-    private val login: Login? = null
+    val login: Login? = null
     @SerializedName("dob")
     @Expose
     val dateOfBirthday: DateOfBirthday? = null
