@@ -2,6 +2,7 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.dagger.module
 
 import android.content.Context
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.context.ContextModule
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.TIMEOUT
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -9,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.io.File
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module(includes = [ContextModule::class])
@@ -19,6 +21,9 @@ class OkHttpClientModule {
         return OkHttpClient()
                 .newBuilder()
                 .cache(cache)
+                .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
                 .build()
     }

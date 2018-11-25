@@ -19,7 +19,6 @@ class PicassoModule {
                 .downloader(okHttp3Downloader)
                 .build()
     }
-
     @Provides
     fun okHttp3Downloader(okHttpClient: OkHttpClient): OkHttp3Downloader = OkHttp3Downloader(okHttpClient)
 }

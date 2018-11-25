@@ -18,7 +18,7 @@ class ListUserRepository(application:Application) {
     val TAG:String = this::class.java.simpleName
 
     var randomUsersListApi: RandomUsersListApi
-    var picasso: Picasso
+
     val listUserComponent: ListUserComponent by lazy {
         DaggerListUserComponent.builder()
                 .contextModule(ContextModule(application.applicationContext))
@@ -29,7 +29,6 @@ class ListUserRepository(application:Application) {
 
     init {
         randomUsersListApi = listUserComponent.getRandomUsersService()
-        picasso = listUserComponent.getPicasso()
     }
 
 

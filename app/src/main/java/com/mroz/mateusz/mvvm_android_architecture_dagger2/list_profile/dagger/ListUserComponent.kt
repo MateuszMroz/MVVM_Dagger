@@ -11,5 +11,4 @@ import dagger.Component
 @Component(modules = [RandomUsersListModule::class, PicassoModule::class])
 interface ListUserComponent {
     fun getRandomUsersService(): RandomUsersListApi
-    fun getPicasso(): Picasso
 }

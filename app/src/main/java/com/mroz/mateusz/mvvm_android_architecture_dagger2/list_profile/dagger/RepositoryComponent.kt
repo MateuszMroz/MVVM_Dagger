@@ -5,7 +5,6 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.mo
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.ListUserRepository
 import dagger.Component
 
-
 @Component(modules = arrayOf(RepoModule::class))
 interface RepositoryComponent {
     fun injectRepo(mainActivity: MainActivity)
