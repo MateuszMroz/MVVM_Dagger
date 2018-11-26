@@ -12,7 +12,9 @@ import android.widget.Toast
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.R
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.databinding.ActivityMainBinding
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.DaggerRepositoryComponent
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module.AdapterModule
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module.RepoModule
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Results
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.User
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.recycler_view.ListUserAdapter
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.viewModel.ListProfileViewModel
@@ -21,7 +23,9 @@ import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
+
+
     val TAG:String = this::class.java.simpleName
 
     @Inject
@@ -31,7 +35,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var recyclerView: RecyclerView
 
-    var adapterList:ListUserAdapter? = null
+    @Inject
+    lateinit var adapterList:ListUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +44,9 @@ class MainActivity : AppCompatActivity() {
 
         DaggerRepositoryComponent.builder()
                 .repoModule(RepoModule(application))
+                .adapterModule(AdapterModule(this))
                 .build()
                 .injectRepo(this)
-
-        adapterList = ListUserAdapter()
 
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -50,8 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListProfileViewModel::class.java)
         viewModel.users!!.observe(this, Observer<User> { users ->
-            adapterList!!.setListUsers(users!!.listUsers!!)
+            adapterList.setListUsers(users!!.listUsers!!)
         })
 
+    }
+
+    override fun onClick(user: Results) {
+        Toast.makeText(this, user.email, Toast.LENGTH_LONG).show()
     }
 }

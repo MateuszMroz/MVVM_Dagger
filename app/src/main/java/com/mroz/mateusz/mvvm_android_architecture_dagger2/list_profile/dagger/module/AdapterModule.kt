@@ -10,7 +10,7 @@ class AdapterModule(var clickListener: ListUserAdapter.ClickListener) {
     @Provides
     fun listener(): ListUserAdapter.ClickListener = clickListener
 
-    /*@Provides
-    fun adapter(): ListUserAdapter = ListUserAdapter()*/
+    @Provides
+    fun adapter(listener: ListUserAdapter.ClickListener): ListUserAdapter = ListUserAdapter(listener)
 
 }

@@ -40,11 +40,7 @@ class OkHttpClientModule {
 
     @Provides
     fun httpLoggingInterceptor(): HttpLoggingInterceptor {
-        var httpLoggingInterceptor = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {
-            override fun log(message: String?) {
-                Timber.d(message)
-            }
-        })
+        var httpLoggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.d(message)})
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return httpLoggingInterceptor

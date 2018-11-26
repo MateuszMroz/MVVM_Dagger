@@ -5,15 +5,20 @@
 
     <data>
         <import type="com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.recycler_view.PicassoLoadImage"/>
+        <import type="android.view.View"/>
         <variable
             name="user"
             type="com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Results"/>
+        <variable
+            name="listener"
+            type="com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.recycler_view.ListUserAdapter.ClickListener"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="@{() -> listener.onClick(user)}">
 
         <ImageView
             android:id="@+id/imageView"
