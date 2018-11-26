@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class RepoModule(var application:Application) {
 
     @Provides
-    fun context(): Application = application
+    fun application(): Application = application
 
     @Provides
     fun repo(application:Application):ListUserRepository = ListUserRepository(application)

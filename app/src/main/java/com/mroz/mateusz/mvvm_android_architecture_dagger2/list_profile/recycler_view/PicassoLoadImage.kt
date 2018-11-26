@@ -19,8 +19,7 @@ class PicassoLoadImage {
                     .build()
 
             var picasso: Picasso = picassoComponent.getPicasso()
-
-            Picasso.get().load(url).into(view)
+            picasso.load(url).into(view)
         }
 
     }

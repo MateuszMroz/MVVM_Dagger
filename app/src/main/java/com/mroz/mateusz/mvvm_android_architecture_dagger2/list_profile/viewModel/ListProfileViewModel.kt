@@ -10,6 +10,6 @@ class ListProfileViewModel(userRepository: ListUserRepository) : ViewModel() {
     var users: LiveData<User>? = null
 
     init {
-        users = userRepository?.getListUserFromWebApi(5)
+        users = userRepository.getListUserFromWebApi(5)
     }
 }

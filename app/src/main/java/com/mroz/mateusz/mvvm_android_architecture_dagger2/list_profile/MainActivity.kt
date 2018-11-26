@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory:ListProfileViewModelFactory
-
     lateinit var viewModel: ListProfileViewModel
+
     lateinit var binding: ActivityMainBinding
-    //temp
     lateinit var recyclerView: RecyclerView
+
     var adapterList:ListUserAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,16 +42,16 @@ class MainActivity : AppCompatActivity() {
                 .build()
                 .injectRepo(this)
 
-        recyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapterList = ListUserAdapter()
 
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapterList
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListProfileViewModel::class.java)
         viewModel.users!!.observe(this, Observer<User> { users ->
-            adapterList = ListUserAdapter(users!!.listUsers!!)
-            recyclerView.adapter = adapterList
+            adapterList!!.setListUsers(users!!.listUsers!!)
         })
-
 
     }
 }
