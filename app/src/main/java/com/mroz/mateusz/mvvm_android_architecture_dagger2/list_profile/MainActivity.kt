@@ -25,18 +25,15 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
 
-
     val TAG:String = this::class.java.simpleName
 
-    @Inject
-    lateinit var viewModelFactory:ListProfileViewModelFactory
+    lateinit var binding: ActivityMainBinding
+
+    @Inject lateinit var viewModelFactory:ListProfileViewModelFactory
     lateinit var viewModel: ListProfileViewModel
 
-    lateinit var binding: ActivityMainBinding
+    @Inject lateinit var adapterList:ListUserAdapter
     lateinit var recyclerView: RecyclerView
-
-    @Inject
-    lateinit var adapterList:ListUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

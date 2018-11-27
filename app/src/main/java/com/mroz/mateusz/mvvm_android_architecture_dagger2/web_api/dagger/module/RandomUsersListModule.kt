@@ -1,10 +1,8 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.dagger.module
 
-import android.app.Application
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.scope.RandomUserApplicationScope
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.ListUserRepository
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.BASE_URL
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.RandomUsersListApi
 import dagger.Module
@@ -12,7 +10,6 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module(includes = [OkHttpClientModule::class])
 class RandomUsersListModule {

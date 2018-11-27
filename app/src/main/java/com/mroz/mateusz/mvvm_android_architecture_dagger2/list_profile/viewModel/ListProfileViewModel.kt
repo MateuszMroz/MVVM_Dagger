@@ -6,10 +6,14 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Use
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.ListUserRepository
 
 
-class ListProfileViewModel(userRepository: ListUserRepository) : ViewModel() {
+class ListProfileViewModel(var userRepository: ListUserRepository) : ViewModel() {
     var users: LiveData<User>? = null
 
     init {
+        users = userRepository.getListUserFromWebApi(5)
+    }
+
+    fun refreshData(){
         users = userRepository.getListUserFromWebApi(5)
     }
 }
