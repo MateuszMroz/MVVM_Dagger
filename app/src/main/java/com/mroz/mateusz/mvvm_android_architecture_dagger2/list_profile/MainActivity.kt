@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapterList
 
+
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListProfileViewModel::class.java)
         viewModel.users!!.observe(this, Observer<User> { users ->
             adapterList.setListUsers(users!!.listUsers!!)

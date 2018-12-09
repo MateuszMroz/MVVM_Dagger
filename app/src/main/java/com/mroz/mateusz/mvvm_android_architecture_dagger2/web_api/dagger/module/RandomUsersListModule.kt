@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.scope.RandomUserApplicationScope
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.BASE_URL
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.LiveDataCallAdapterFactory
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.RandomUsersListApi
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RandomUsersListModule {
 
     @Provides
-    fun randomUsersApi(retrofit: Retrofit): RandomUsersListApi = retrofit.create(RandomUsersListApi::class.java)
+        fun randomUsersApi(retrofit: Retrofit): RandomUsersListApi = retrofit.create(RandomUsersListApi::class.java)
 
     @RandomUserApplicationScope
     @Provides
@@ -25,6 +26,7 @@ class RandomUsersListModule {
         return Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BASE_URL)
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .addConverterFactory(gsonConverterFactory)
                 .build()
     }
