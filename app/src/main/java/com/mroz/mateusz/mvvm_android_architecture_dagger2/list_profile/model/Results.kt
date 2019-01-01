@@ -1,35 +1,54 @@
 package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model
 
+import android.arch.persistence.room.*
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
-
+@Entity(tableName = "results")
 class Results {
+    @PrimaryKey(autoGenerate = true)
+    @Expose(serialize = false, deserialize = false)
+    var _id: Int = 0
+
+    @Expose
     @SerializedName("gender")
+    var gender: String = ""
+
     @Expose
-    val gender: String = ""
     @SerializedName("name")
+    @Embedded(prefix = "name_")
+    var name: Name? = null
+
     @Expose
-    val name: Name? = null
     @SerializedName("location")
+    @Embedded(prefix = "location_")
+    var location: Location? = null
+
     @Expose
-    val location: Location? = null
     @SerializedName("email")
+    var email: String = ""
+
     @Expose
-    val email: String = ""
     @SerializedName("login")
+    @Embedded(prefix = "login_")
+    var login: Login? = null
+
     @Expose
-    val login: Login? = null
     @SerializedName("dob")
+    @Embedded(prefix = "dob_")
+    var dateOfBirthday: DateOfBirthday? = null
+
     @Expose
-    val dateOfBirthday: DateOfBirthday? = null
     @SerializedName("phone")
+    var phone: String = ""
+
     @Expose
-    val phone: String = ""
     @SerializedName("cell")
+    var cell: String = ""
+
     @Expose
-    val cell: String? = null
     @SerializedName("picture")
-    @Expose
-    val pictureJSON: PictureJSON? = null
+    @Embedded(prefix = "picture_")
+    var pictureJSON: PictureJSON? = null
 }

@@ -22,8 +22,8 @@ sealed class ApiResponse<T>{
                     ApiEmptyResponse()
                 } else {
                     ApiSuccessResponse(
-                            body = body,
-                            linkerHeader = response.headers()?.get("link")
+                            body = body
+                            //linkerHeader = response.headers()?.get("link")
                     )
                 }
             } else {
@@ -39,11 +39,11 @@ class ApiEmptyResponse<T> : ApiResponse<T>()
 class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
  class ApiSuccessResponse<T>(
-        val body: T,
-        val links: Map<String, String>
+        val body: T
+        //val links: Map<String, String>
 ): ApiResponse<T>() {
 
-    constructor(body: T, linkerHeader: String?): this (
+    /*constructor(body: T, linkerHeader: String?): this (
         body = body,
         links = linkerHeader?.extractLinks() ?: emptyMap()
     )
@@ -82,7 +82,7 @@ class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
             return links
         }
 
-    }
+    }*/
 }
 
 

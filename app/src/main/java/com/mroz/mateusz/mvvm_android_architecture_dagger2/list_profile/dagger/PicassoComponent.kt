@@ -7,7 +7,7 @@ import com.squareup.picasso.Picasso
 import dagger.Component
 
 @RandomUserApplicationScope
-@Component(modules = arrayOf(PicassoModule::class))
+@Component(modules = [PicassoModule::class])
 interface PicassoComponent {
     fun getPicasso(): Picasso
 }
