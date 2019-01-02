@@ -23,7 +23,5 @@ class MVVMDaggerApplication : Application() {
             Timber.plant(ReleaseTree())
         }
 
-
     }
-
 }

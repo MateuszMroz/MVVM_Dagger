@@ -73,17 +73,21 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
         binding.users = viewModel.users
         binding.setLifecycleOwner(this)
 
-        viewModel.users.observe(this, Observer { user ->
+        initUserList()
+    }
+
+    private fun initUserList() {
+        viewModel.mediatorLiveData.observe(this, Observer { user ->
             try {
                 adapterList.setListUsers(user?.data!!)
             }catch(e:KotlinNullPointerException ) {
                 Timber.d("NullPointerException")
             }
         })
-
     }
 
     override fun onClick(user: Results) {
         Toast.makeText(this, user.email, Toast.LENGTH_LONG).show()
+        //viewModel.refresh()
     }
 }
