@@ -15,6 +15,13 @@ interface UserDao {
     @Query("SELECT * FROM results")
     fun findUsers():LiveData<List<Results>>
 
+    @Query("SELECT * FROM results WHERE _id = :userId" )
+    fun getUser(userId:Int): LiveData<Results>
+
     @Delete
     fun deleteUser(user: Results)
+
+    @Query("DELETE FROM results")
+    fun deleteAllUsers()
+
 }

@@ -14,18 +14,23 @@ class ListUserRepository @Inject constructor(
         private val userDao: UserDao,
         private val randomUsersListApi: RandomUsersListApi) {
 
-    fun lodUsers(count:Int): LiveData<Resource<List<Results>>> {
+    fun lodUsers(count:Int, refresh :Boolean): LiveData<Resource<List<Results>>> {
         return object: NetworkBoundResource<List<Results>, User>(appExecutors) {
             override fun saveCallResult(item: User) {
                 userDao.insertListUser(item.listUsers!!)
             }
 
-            override fun shouldFetch(data: List<Results>?) = data == null || data.isEmpty()
+            override fun shouldFetch(data: List<Results>?) = refresh || data == null || data.isEmpty()
 
             override fun lodFromDb(): LiveData<List<Results>> = userDao.findUsers()
 
             override fun createCall(): LiveData<ApiResponse<User>> = randomUsersListApi.getRandomUsers(count)
 
         }.asLiveData()
+    }
+
+
+    fun removeUserFromDb() {
+        userDao.deleteAllUsers()
     }
 }

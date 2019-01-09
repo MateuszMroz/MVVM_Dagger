@@ -19,6 +19,8 @@
           android:orientation="vertical"
           android:layout_width="wrap_content"
           android:gravity="center"
+          app:visibleGone="@{resource.status == Status.LOADING || resource.status == Status.ERROR}"
+          android:background="@color/loading_state"
           android:padding="@dimen/default_margin"
           android:layout_height="wrap_content">
 

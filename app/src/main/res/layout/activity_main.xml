@@ -11,6 +11,9 @@
         <import type="com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Results"/>
 
         <variable
+            name="resource"
+            type="Resource"/>
+        <variable
             name="users"
             type="LiveData&lt;Resource&lt;List&lt;Results>>>"/>
         <variable
@@ -27,6 +30,7 @@
             android:id="@+id/swipe_to_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:hideProgressBar="@{users.status == Status.LOADING}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

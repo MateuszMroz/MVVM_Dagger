@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ListProfileViewModel @Inject constructor(private val userRepository: ListUserRepository) : ViewModel() {
 
     val mediatorLiveData:MediatorLiveData<Resource<List<Results>>> = MediatorLiveData()
-    var users: LiveData<Resource<List<Results>>> =  userRepository.lodUsers(5)
+    var users: LiveData<Resource<List<Results>>> =  userRepository.lodUsers(5, false)
 
     init {
         mediatorLiveData.addSource(users) {
@@ -22,8 +22,11 @@ class ListProfileViewModel @Inject constructor(private val userRepository: ListU
     }
 
     fun refresh() {
+//        userRepository.removeUserFromDb()
         mediatorLiveData.removeSource(users)
-        users = userRepository.lodUsers(5)
+
+        users = userRepository.lodUsers(5, true)
+
         mediatorLiveData.addSource(users){
             mediatorLiveData.value = it
         }

@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
@@ -25,7 +26,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
+class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener {
 
     val TAG:String = this::class.java.simpleName
 
@@ -59,20 +60,17 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
 
         binding.retryCallback = object: RetryCallback {
             override fun retry() {
-                Toast.makeText(
-                        this@MainActivity,
-                        "Spróbuj ponownie!",
-                        Toast.LENGTH_SHORT
-                ).show()
+                onRefresh()
             }
 
         }
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ListProfileViewModel::class.java)
 
-        binding.users = viewModel.users
+        binding.users = viewModel.mediatorLiveData
         binding.setLifecycleOwner(this)
 
+        onRefresh()
         initUserList()
     }
 
@@ -86,8 +84,13 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener  {
         })
     }
 
+    private fun onRefresh() {
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.refresh()
+        }
+    }
+
     override fun onClick(user: Results) {
         Toast.makeText(this, user.email, Toast.LENGTH_LONG).show()
-        //viewModel.refresh()
     }
 }

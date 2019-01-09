@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.binding_adpaters.PicassoLoadImage"/>
+        <import type="com.mroz.mateusz.mvvm_android_architecture_dagger2.bindings.PicassoLoadImage"/>
         <import type="android.view.View"/>
         <variable
             name="user"

@@ -42,39 +42,42 @@ abstract class NetworkBoundResource<ResultType, RequestType>
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         val apiResponse = createCall()
-        result.addSource(dbSource) {newData ->
-            setValue(Resource.loading(newData)!!)
-        }
+        apiResponse?.let {
 
-        result.addSource(apiResponse) {response ->
+            result.addSource(dbSource) {newData ->
+                setValue(Resource.loading(newData)!!)
+            }
+
+            result.addSource(it) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
 
-            when(response) {
-                is ApiSuccessResponse -> {
-                    appExecutors.diskIO().execute {
-                        saveCallResult(processResponse(response))
+                when(response) {
+                    is ApiSuccessResponse -> {
+                        appExecutors.diskIO().execute {
+                            saveCallResult(processResponse(response))
+                            appExecutors.mainThread().execute {
+                                result.addSource(lodFromDb()) {newData ->
+                                    setValue(Resource.success(newData))
+                                }
+                            }
+                        }
+                    }
+
+                    is ApiEmptyResponse -> {
                         appExecutors.mainThread().execute {
                             result.addSource(lodFromDb()) {newData ->
                                 setValue(Resource.success(newData))
                             }
                         }
                     }
-                }
 
-                is ApiEmptyResponse -> {
-                    appExecutors.mainThread().execute {
-                        result.addSource(lodFromDb()) {newData ->
-                            setValue(Resource.success(newData))
+                    is ApiErrorResponse -> {
+                        onFetchFailed()
+                        result.addSource(dbSource) {newData ->
+                            setValue(Resource.error(response.errorMessage, newData))
+                            Timber.d(response.errorMessage)
                         }
-                    }
-                }
-
-                is ApiErrorResponse -> {
-                    onFetchFailed()
-                    result.addSource(dbSource) {newData ->
-                        setValue(Resource.error(response.errorMessage, newData))
-                        Timber.d(response.errorMessage)
                     }
                 }
             }
@@ -98,6 +101,5 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     protected abstract fun lodFromDb(): LiveData<ResultType>
 
     @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
-
+    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>?
 }
