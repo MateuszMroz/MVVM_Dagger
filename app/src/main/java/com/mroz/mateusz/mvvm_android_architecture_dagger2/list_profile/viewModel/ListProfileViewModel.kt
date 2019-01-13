@@ -10,7 +10,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class ListProfileViewModel @Inject constructor(private val userRepository: ListUserRepository) : ViewModel() {
+class ListProfileViewModel
+@Inject constructor(private val userRepository: ListUserRepository) : ViewModel() {
 
     val mediatorLiveData:MediatorLiveData<Resource<List<Results>>> = MediatorLiveData()
     var users: LiveData<Resource<List<Results>>> =  userRepository.lodUsers(5, false)

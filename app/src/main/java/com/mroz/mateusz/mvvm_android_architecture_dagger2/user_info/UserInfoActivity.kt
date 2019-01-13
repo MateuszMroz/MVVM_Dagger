@@ -8,7 +8,7 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.databinding.ActivityUs
 
 class UserInfoActivity : AppCompatActivity() {
 
-     lateinit var binding:ActivityUserInfoBinding
+    lateinit var binding:ActivityUserInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

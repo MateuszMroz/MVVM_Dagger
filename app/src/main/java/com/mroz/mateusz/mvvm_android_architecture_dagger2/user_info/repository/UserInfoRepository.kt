@@ -7,9 +7,10 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Res
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.NetworkBoundResource
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.ApiResponse
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.web_api.Resource
+import javax.inject.Inject
 
 
-class UserInfoRepository constructor(
+class UserInfoRepository @Inject constructor(
         private val appExecutors: AppExecutors,
         private val userDao:UserDao){
 

@@ -2,18 +2,30 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.viewMode
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.ListUserRepository
 import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 
 
 class ListProfileViewModelFactory
-    @Inject constructor(var repository: ListUserRepository): ViewModelProvider.Factory {
+    @Inject constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
+    : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(ListProfileViewModel::class.java!!)) {
+        /*return if (modelClass.isAssignableFrom(ListProfileViewModel::class.java!!)) {
             ListProfileViewModel(this.repository) as T
         } else {
             throw IllegalArgumentException("ViewModel Not Found") as Throwable
+        }*/
+
+        val creator = creators[modelClass] ?: creators.entries.firstOrNull {
+            modelClass.isAssignableFrom(it.key)
+        }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
+        try {
+            @Suppress("UNCHECKED_CAST")
+            return creator.get() as T
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
     }
 }
