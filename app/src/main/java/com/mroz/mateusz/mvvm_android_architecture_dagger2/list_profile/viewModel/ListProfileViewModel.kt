@@ -2,6 +2,7 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.viewMode
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
+import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Results
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.repository.ListUserRepository

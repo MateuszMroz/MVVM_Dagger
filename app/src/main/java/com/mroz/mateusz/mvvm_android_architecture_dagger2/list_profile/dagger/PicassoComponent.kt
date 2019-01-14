@@ -5,7 +5,6 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.mo
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module.PicassoModule_OkHttp3DownloaderFactory
 import com.squareup.picasso.Picasso
 import dagger.Component
-
 @RandomUserApplicationScope
 @Component(modules = [PicassoModule::class])
 interface PicassoComponent {

@@ -11,17 +11,17 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
 
 @Module(includes = [OkHttpClientModule::class])
 class RandomUsersListModule {
-
-    @Provides
-        fun randomUsersApi(retrofit: Retrofit): RandomUsersListApi = retrofit.create(RandomUsersListApi::class.java)
-
     @RandomUserApplicationScope
     @Provides
-    fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory,
-                 gson: Gson):Retrofit {
+    fun randomUsersApi(retrofit: Retrofit): RandomUsersListApi = retrofit.create(RandomUsersListApi::class.java)
+    @RandomUserApplicationScope
+    @Provides
+    fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory):Retrofit {
 
         return Retrofit.Builder()
                 .client(okHttpClient)
@@ -30,10 +30,10 @@ class RandomUsersListModule {
                 .addConverterFactory(gsonConverterFactory)
                 .build()
     }
-
+    @RandomUserApplicationScope
     @Provides
     fun gson():Gson = GsonBuilder().create()
-
+    @RandomUserApplicationScope
     @Provides
     fun gsonConvertFactory(gson: Gson) : GsonConverterFactory = GsonConverterFactory.create(gson)
 

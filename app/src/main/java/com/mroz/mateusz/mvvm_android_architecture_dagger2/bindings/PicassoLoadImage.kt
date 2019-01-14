@@ -16,22 +16,23 @@ class PicassoLoadImage {
         @BindingAdapter("imageUrl")
         fun loadImage(view: ImageView, url: String) {
 
+            //Glide is faster than picasso
+            Glide.with(view.context)
+                    .load(url)
+                    .into(view)
 
-            val picassoComponent: PicassoComponent = DaggerPicassoComponent.builder()
+            /*val picassoComponent: PicassoComponent = DaggerPicassoComponent.builder()
                     .contextModule(ContextModule(view.context))
                     .build()
 
             var picasso: Picasso = picassoComponent.getPicasso()
-
+            */
            /* picasso.load(url)
                     .placeholder(R.drawable.progress_image)
                     .error(R.drawable.error)
                     .into(view)*/
 
-            //Glide is faster than picasso
-            Glide.with(view.context)
-                    .load(url)
-                    .into(view)
+
         }
 
 

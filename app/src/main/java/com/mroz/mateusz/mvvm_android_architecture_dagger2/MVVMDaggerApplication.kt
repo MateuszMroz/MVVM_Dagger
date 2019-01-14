@@ -6,7 +6,6 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.dagger_global.context.
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.db.dagger.UserDbModule
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.DaggerRepositoryComponent
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.RepositoryComponent
-import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.dagger.module.RepoModule
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.ReleaseTree
 import timber.log.Timber
 
@@ -19,7 +18,6 @@ class MVVMDaggerApplication : Application() {
         super.onCreate()
 
         repositoryComponent = DaggerRepositoryComponent.builder()
-                .repoModule(RepoModule())
                 .contextModule(ContextModule(this))
                 .userDbModule(UserDbModule(this))
                 .build()

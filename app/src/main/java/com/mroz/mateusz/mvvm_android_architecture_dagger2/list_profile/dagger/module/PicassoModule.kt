@@ -9,6 +9,8 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import javax.inject.Named
+import javax.inject.Singleton
+
 
 @Module(includes = [OkHttpClientModule::class])
 class PicassoModule {
@@ -20,6 +22,7 @@ class PicassoModule {
                 .build()
     }
 
+    @RandomUserApplicationScope
     @Provides
     fun okHttp3Downloader(okHttpClient: OkHttpClient): OkHttp3Downloader = OkHttp3Downloader(okHttpClient)
 }

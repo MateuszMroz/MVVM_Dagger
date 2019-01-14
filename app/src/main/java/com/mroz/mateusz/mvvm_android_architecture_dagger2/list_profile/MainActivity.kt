@@ -3,6 +3,7 @@ package com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +17,9 @@ import com.mroz.mateusz.mvvm_android_architecture_dagger2.databinding.ActivityMa
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.model.Results
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.recycler_view.ListUserAdapter
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.list_profile.viewModel.ListProfileViewModel
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.user_info.UserInfoActivity
 import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.RetryCallback
+import com.mroz.mateusz.mvvm_android_architecture_dagger2.utils.USER_ID
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -84,6 +87,9 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.ClickListener {
     }
 
     override fun onClick(user: Results) {
-        Toast.makeText(this, user.email, Toast.LENGTH_LONG).show()
+
+        var intent = Intent(this, UserInfoActivity::class.java)
+        intent.putExtra(USER_ID, user._id)
+        startActivity(intent)
     }
 }
